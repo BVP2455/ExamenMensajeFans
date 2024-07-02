@@ -4,6 +4,8 @@
 
 Enlace github: https://github.com/BVP2455/ExamenMensajeFans
 
+Github: https://github.com/pablobuza014/DeliverUS-OwnerALL
+
 Una vez se ha puesto en marcha la primera versión de DeliverUS, los inversores han solicitado la inclusión de una nueva funcionalidad que consiste en ofrecer a los propietarios la posibilidad de promocionar sus restaurantes. Cada propietario sólo podrá promocionar uno de sus restaurantes.
 
 Un propietario podrá promocionar un restaurante de dos maneras distintas:
