@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       url: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      mensaje: {
         type: Sequelize.STRING
       },
       shippingCosts: {

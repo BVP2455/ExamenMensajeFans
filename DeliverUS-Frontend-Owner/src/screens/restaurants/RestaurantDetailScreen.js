@@ -15,12 +15,28 @@ import defaultProductImage from '../../../assets/product.jpeg'
 export default function RestaurantDetailScreen ({ navigation, route }) {
   const [restaurant, setRestaurant] = useState({})
   const [productToBeDeleted, setProductToBeDeleted] = useState(null)
+  const [color, setColor] = useState('blue')
 
   useEffect(() => {
     fetchRestaurantDetail()
   }, [route])
 
-  const renderHeader = () => {
+  const AnimatedText = () => {
+    const [color, setColor] = useState('blue')
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setColor((prevColor) => (prevColor === 'black' ? 'blue' : 'black'))
+      }, 750) // Change color every x milliseconds
+
+      return () => clearInterval(interval) // Clean up the interval when the component unmounts
+    }, [])
+
+    return <TextRegular style={[styles.text, { color, fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10 }]}>
+      {restaurant.messageToFans}</TextRegular>
+  }
+
+  const renderHeader = (item) => {
     return (
       <View>
         <ImageBackground source={(restaurant?.heroImage) ? { uri: process.env.API_BASE_URL + '/' + restaurant.heroImage, cache: 'force-cache' } : undefined} style={styles.imageBackground}>
@@ -31,7 +47,9 @@ export default function RestaurantDetailScreen ({ navigation, route }) {
             <TextRegular textStyle={styles.description}>{restaurant.restaurantCategory ? restaurant.restaurantCategory.name : ''}</TextRegular>
           </View>
         </ImageBackground>
-
+        {item.mensaje !== null &&
+          <TextSemiBold textStyle={styles.messageStyle}>{restaurant.mensaje}</TextSemiBold>
+        }
         <Pressable
           onPress={() => navigation.navigate('CreateProductScreen', { id: restaurant.id })
           }
@@ -244,5 +262,12 @@ const styles = StyleSheet.create({
     bottom: 5,
     position: 'absolute',
     width: '90%'
-  }
+  },
+  messageStyle: {
+    fontSize: 20,
+    color: 'black',
+    alignSelf: 'center',
+    marginLeft: 5,
+    marginTop: 12,
+  },
 })
